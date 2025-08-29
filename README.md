@@ -23,23 +23,27 @@ A modern Next.js application built with TypeScript, featuring comprehensive test
 ## 🛠️ Installation
 
 1. **Clone the repository**
+
    ```bash
    git clone <repository-url>
    cd one-mission
    ```
 
 2. **Install dependencies**
+
    ```bash
    npm install
    ```
 
 3. **Set up environment variables**
+
    ```bash
    cp .env.example .env.local
    # Edit .env.local with your configuration
    ```
 
 4. **Start the development server**
+
    ```bash
    npm run dev
    ```
@@ -72,6 +76,7 @@ one-mission/
 ## 🧪 Testing
 
 ### Unit Tests
+
 ```bash
 # Run all unit tests
 npm test
@@ -84,6 +89,7 @@ npm run test:ci
 ```
 
 ### E2E Tests
+
 ```bash
 # Run all E2E tests
 npm run test:e2e
@@ -96,12 +102,54 @@ npm run test:e2e:debug
 ```
 
 ### All Tests
+
 ```bash
 # Run linting, type checking, unit tests, and E2E tests
 npm run test:all
 ```
 
 ## 🔧 Development
+
+### Initial Setup
+
+```bash
+# Setup local development environment
+npm run setup:local
+
+# Or manually:
+# 1. Ensure you're using Node.js 18.18.0
+nvm use 18.18.0
+
+# 2. Install dependencies
+npm install
+
+# 3. Copy environment template
+cp env.template .env.local
+# Edit .env.local with your Firebase configuration
+```
+
+### Development Workflow
+
+**Important**: Always create new features in separate branches and use Pull Requests!
+
+```bash
+# Create a new feature branch
+git checkout -b feature/your-feature-name
+
+# Make your changes...
+
+# Run tests to ensure everything works
+npm test
+npm run test:e2e
+
+# Commit your changes
+git add .
+git commit -m "feat: add your feature description"
+
+# Push and create a Pull Request
+git push origin feature/your-feature-name
+# Then create PR on GitHub
+```
 
 ### Code Quality
 
@@ -129,6 +177,7 @@ npm run build:analyze
 ## 🚀 Deployment
 
 ### Firebase
+
 ```bash
 # Deploy to Firebase
 npm run deploy:firebase
@@ -138,12 +187,14 @@ npm run deploy:firebase:full
 ```
 
 ### Vercel
+
 ```bash
 # Deploy to Vercel
 npm run deploy:vercel
 ```
 
 ### AWS S3
+
 ```bash
 # Deploy to S3
 npm run deploy:s3
@@ -183,6 +234,7 @@ type(scope): description
 ```
 
 Types:
+
 - `feat`: New feature
 - `fix`: Bug fix
 - `docs`: Documentation changes
@@ -198,6 +250,7 @@ Types:
 ### Pre-commit Hooks
 
 The following checks run automatically on commit:
+
 - ESLint fixes
 - Prettier formatting
 - TypeScript type checking
