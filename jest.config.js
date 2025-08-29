@@ -16,7 +16,13 @@ module.exports = {
     '<rootDir>/src/**/*.spec.{js,jsx,ts,tsx}',
   ],
   transform: {
-    '^.+\\.(js|jsx|ts|tsx)$': ['babel-jest', { presets: ['next/babel'] }],
+    '^.+\\.(js|jsx|ts|tsx)$': ['babel-jest', { 
+      presets: [
+        ['@babel/preset-env', { targets: { node: 'current' } }],
+        ['@babel/preset-react', { runtime: 'automatic' }],
+        '@babel/preset-typescript'
+      ]
+    }],
   },
   transformIgnorePatterns: [
     'node_modules/(?!(next|@next|react|@react|firebase|@firebase)/)',
