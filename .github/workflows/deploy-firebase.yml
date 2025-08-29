@@ -43,3 +43,4 @@ jobs:
           channelId: live
           projectId: one-mission-app
           entryPoint: .
+          firebaseToolsVersion: 11.30.0
