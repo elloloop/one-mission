@@ -93,14 +93,12 @@ jobs:
               ' deploy-config.json))
             else
               [[ -f firebase.json ]] && TARGETS+=("firebase")
-              [[ -f scripts/deploy-s3.js ]] && TARGETS+=("aws-s3")
               [[ -f vercel.json || $(grep -c "\"deploy:vercel\"" package.json || true) -gt 0 ]] && TARGETS+=("vercel")
-              # github-pages or netlify rarely auto-detect, keep manual
             fi
           fi
 
-          # Fallback to all when nothing matches
-          [[ ${#TARGETS[@]} -eq 0 ]] && TARGETS=(firebase aws-s3 vercel github-pages netlify)
+          # Fallback to firebase when nothing matches
+          [[ ${#TARGETS[@]} -eq 0 ]] && TARGETS=(firebase)
 
           echo "targets=$(printf "%s\n" "${TARGETS[@]}" | jq -R . | jq -cs .)" >> "$GITHUB_OUTPUT"
 
@@ -116,34 +114,10 @@ jobs:
       ref: ${{ github.ref }}
     secrets: inherit
 
-  deploy-aws-s3:
-    if: ${{ contains(fromJson(needs.determine_target.outputs.targets), 'aws-s3') }}
-    needs: determine_target
-    uses: ./.github/workflows/deploy-aws-s3.yml
-    with:
-      ref: ${{ github.ref }}
-    secrets: inherit
-
   deploy-vercel:
     if: ${{ contains(fromJson(needs.determine_target.outputs.targets), 'vercel') }}
     needs: determine_target
     uses: ./.github/workflows/deploy-vercel.yml
-    with:
-      ref: ${{ github.ref }}
-    secrets: inherit
-
-  deploy-github-pages:
-    if: ${{ contains(fromJson(needs.determine_target.outputs.targets), 'github-pages') }}
-    needs: determine_target
-    uses: ./.github/workflows/deploy-github-pages.yml
-    with:
-      ref: ${{ github.ref }}
-    secrets: inherit
-
-  deploy-netlify:
-    if: ${{ contains(fromJson(needs.determine_target.outputs.targets), 'netlify') }}
-    needs: determine_target
-    uses: ./.github/workflows/deploy-netlify.yml
     with:
       ref: ${{ github.ref }}
     secrets: inherit
