@@ -1,0 +1,38 @@
+{
+  "targets": {
+    "firebase": true,
+    "aws-s3": false,
+    "vercel": false,
+    "github-pages": false,
+    "netlify": false
+  },
+  "environments": {
+    "production": {
+      "targets": {
+        "firebase": true,
+        "aws-s3": false,
+        "vercel": false,
+        "github-pages": false,
+        "netlify": false
+      }
+    },
+    "staging": {
+      "targets": {
+        "firebase": true,
+        "aws-s3": false,
+        "vercel": false,
+        "github-pages": false,
+        "netlify": false
+      }
+    },
+    "development": {
+      "targets": {
+        "firebase": false,
+        "aws-s3": false,
+        "vercel": false,
+        "github-pages": false,
+        "netlify": false
+      }
+    }
+  }
+}
